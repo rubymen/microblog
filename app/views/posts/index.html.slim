@@ -1,0 +1,13 @@
+p#notice= notice
+
+- @posts.each do |post|
+  article
+    .thumb[style="background-image: url(#{post.image})"]
+    .thumb-text
+      p
+        i.glyphicon.glyphicon-time
+        = " #{post.created_at.to_formatted_s(:short)}"
+      br
+      p.title
+        = post.title
+    = link_to '', post

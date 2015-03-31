@@ -1,0 +1,49 @@
+.container.article-view
+  .col-sm-12
+    h1= @post.title
+    h3= @post.description
+    p= raw @post.body.gsub(/\n/, '<br>')
+
+  - if @post.comments.count > 0
+    .col-sm-12.comments
+      h4= "#{@post.comments.count} #{'commentaire'.pluralize(@post.comments.count)}"
+      ul
+        - @post.comments.each do |comment|
+          - unless comment.body.nil?
+            li
+              .comment
+                .col-sm-4
+                  .author= comment.name
+                  .date= comment.email
+                .com-sm-8
+                  .title= comment.title
+                  .body= comment.body
+  - else
+    .col-sm-12
+      h4 Aucun commentaires sur cet article
+
+  .col-sm-12
+
+    h4 Ajouter un commentaire
+    = form_for @comment, url: post_comments_path(@post) do |f|
+      - if @comment.errors.any?
+        #error_explanation
+          h2= "#{pluralize(@comment.errors.count, "error")} prohibited this comment from being save"
+          ul
+            - @comment.errors.full_messages.each do |message|
+              li = message
+
+      .col-sm-6
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+      .col-sm-6
+        = f.label :email
+        = f.text_field :email, class: 'form-control'
+      .col-sm-6
+        = f.label :title
+        = f.text_field :title, class: 'form-control'
+      .col-sm-6
+        = f.label :body
+        = f.text_field :body, class: 'form-control'
+      .col-sm-12
+        = f.submit

@@ -1,0 +1,132 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans);
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  background-color: #fff;
+  color: #505050;
+  word-wrap: break-word;
+  font-family: "Noto Sans",sans-serif
+}
+
+header {
+  padding: 30px;
+
+  a {
+    margin-left: 30px;
+    color: #505050;
+    -webkit-transition: .2s;
+    transition: .2s;
+
+    &:hover, &:focus, &.active {
+      text-decoration: none;
+      color: #bcbcbc;
+    }
+  }
+}
+
+article {
+  overflow: hidden;
+  position: relative;
+  float: left;
+  width: 50%;
+  height: 500px;
+  margin-bottom: 1px;
+  background-color: #222;
+  font-size: 14px;
+  text-transform: uppercase;
+
+  &:hover {
+    .thumb {
+      opacity: .3;
+    }
+  }
+
+  a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .thumb {
+    opacity: .8;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    -webkit-transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .thumb-text {
+    position: absolute;
+    top: 50%;
+    left: 45px;
+    margin-right: 90px;
+    color: #fff;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    .title {
+      font-size: 30px;
+    }
+  }
+}
+
+.article-view {
+
+  h4 {
+    padding-top: 40px;
+    border-top: 1px dotted #bcbcbc;
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .comments {
+    padding-bottom: 30px;
+    li {
+      list-style: none;
+
+      .author {
+        font-size: 18px;
+      }
+
+      .date {
+        color: #bcbcbc;
+      }
+
+      &:before {
+        content: "0" counter(li);
+        counter-increment: li;
+        position: absolute;
+        left: -60px;
+        color: #f8f8f8;
+        font-size: 50px;
+        font-weight: 700;
+        letter-spacing: -1px;
+      }
+    }
+  }
+}
